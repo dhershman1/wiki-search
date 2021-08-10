@@ -12,11 +12,11 @@ def search_index(search):
   page = wikipedia.search(search, 15)
   if page[0].lower() in search.lower():
     return {
-      "links": ["https://en.wikipedia.org/wiki/{}".format(page[0].replace(' ', '_'))]
+      "links": [build_url(page[0])]
     }
-  urls = list(map(build_url, page))
+
   return {
-    "links": urls
+    "links": list(map(build_url, page))
   }
 
 @app.route('/')
