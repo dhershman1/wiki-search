@@ -4,6 +4,9 @@ import wikipedia
 app = Flask(__name__)
 app.config['SERVER_NAME'] = 'localhost:5000'
 
+def build_url(str):
+  return "https://en.wikipedia.org/wiki/{}".format(str.replace(' ', '_'))
+
 @app.route('/', subdomain="<search>", methods=["GET"])
 def search_index(search):
   page = wikipedia.search(search, 15)
@@ -11,8 +14,9 @@ def search_index(search):
     return {
       "links": ["https://en.wikipedia.org/wiki/{}".format(page[0])]
     }
+  urls = list(map(build_url, page))
   return {
-    "links": page
+    "links": urls
   }
 
 @app.route('/')
