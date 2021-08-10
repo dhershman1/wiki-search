@@ -28,8 +28,8 @@ def search_index(search):
     return "Something terrible has happened!"
 
 @app.route('/')
-def hello_world():
-  return "Hello, World!"
+def instructions():
+  return "Use a subdomain to search, example: dogs.yourdomain"
 
 if __name__ == '__main__':
   app.run(debug=True)
